@@ -91,7 +91,7 @@ header .ch-lang {
     top: 0;
     right: 0;
     right: 100%;
-    background-color: #333;
+    background-color: #262626;
     padding-top: 100px;
   }
   header .menu:hover + .main-nav {
