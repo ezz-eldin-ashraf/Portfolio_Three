@@ -62,11 +62,10 @@ header .logo {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--main-color);
-  font-weight: bold;
-  font-size: 26px;
   height: 72px;
-  text-transform: uppercase;
+}
+header img {
+  width: 80px;
 }
 header .main-nav {
   display: flex;
@@ -219,7 +218,7 @@ header .menu .outer:last-child {
 }
 header .menu .inner {
   display: block;
-  background-color: #333;
+  background-color: #262626;
   width: 3px;
   height: 100%;
 }
@@ -234,4 +233,99 @@ header .menu .inner.two {
 }
 header .menu .inner.three {
   border-radius: 0 50% 50% 0;
+}
+
+/* Start landing  */
+.landing {
+  height: calc(100dvh - 72px);
+  position: relative;
+  overflow: hidden;
+  z-index: -1;
+}
+.landing::before {
+  content: "";
+  background-color: #ececec;
+  width: 100%;
+  height: 95%;
+  transform: skewY(-6deg);
+  transform-origin: top left;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.landing .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: calc(100% - 72px);
+}
+@media (max-width: 991px) {
+  .landing .container {
+    text-align: center;
+  }
+}
+
+@media (max-width: 991px) {
+  .landing .text {
+    width: 100%;
+  }
+}
+.landing h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+@media (max-width: 767px) {
+  .landing h1 {
+    font-size: 30px;
+  }
+}
+.landing p {
+  font-size: 23px;
+  line-height: 1.7;
+  color: rgb(102, 102, 102);
+}
+@media (max-width: 767px) {
+  .landing p {
+    font-size: 18px;
+  }
+}
+.landing img {
+  width: 600px;
+  animation: fly 2.5s linear infinite alternate;
+}
+@media (max-width: 991px) {
+  .landing img {
+    display: none;
+  }
+}
+.landing i {
+  margin: 20px auto 0;
+  display: block;
+  width: fit-content;
+  color: var(--main-color);
+  font-size: 30px;
+  animation: up-down 1.5s infinite;
+}
+@keyframes fly {
+  0% {
+    transform: translateY(-25px);
+  }
+  100% {
+    transform: translateY(25px);
+  }
+}
+@keyframes up-down {
+  0%,
+  10%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40%,
+  60% {
+    transform: translateY(-15px);
+  }
 }
