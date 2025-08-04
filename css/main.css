@@ -19,11 +19,6 @@ html {
 body {
   font-family: "Cairo", sans-serif;
 }
-/* AI added part */
-.no-scroll {
-  overflow: hidden;
-  height: 100dvh;
-}
 ul {
   list-style: none;
 }
