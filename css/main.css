@@ -1,9 +1,13 @@
-/* Global */
+/*
+------------------
+Global
+------------------
+*/
 :root {
   --main-color: #2196f3;
-  --sec-color: #fafafa;
+  --sec-color: #ececec;
   --main-color-alt: #1787e0;
-  --bottom-padding: 100px;
+  --sec-padding: 100px;
 }
 * {
   -webkit-tap-highlight-color: transparent;
@@ -48,9 +52,12 @@ a {
     width: 1170px;
   }
 }
-/* Repititive Components*/
+/*
+------------------
+Repititive
+------------------
+*/
 /* Main heading */
-
 .main-head {
   padding: 10px 20px;
   font-size: 30px;
@@ -58,7 +65,7 @@ a {
   text-transform: uppercase;
   font-weight: bold;
   width: fit-content;
-  margin: 100px auto 80px;
+  margin: 0 auto 80px;
   position: relative;
   z-index: 1;
   transition: 0.1s;
@@ -94,7 +101,11 @@ a {
 .main-head:hover:after {
   animation: to-left 0.6s linear forwards;
 }
-/* Main-head Animation */
+/*
+------------------
+Animations
+------------------
+*/
 @keyframes to-right {
   50% {
     left: 0;
@@ -121,8 +132,50 @@ a {
     border-radius: 0;
   }
 }
+@keyframes fly {
+  0% {
+    transform: translateY(-25px);
+  }
+  100% {
+    transform: translateY(25px);
+  }
+}
+@keyframes up-down {
+  0%,
+  10%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40%,
+  60% {
+    transform: translateY(-15px);
+  }
+}
+@keyframes moving-arrow {
+  to {
+    transform: translate(calc(-50% + 6px), -50%);
+  }
+}
+@keyframes flashing {
+  0%,
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    width: 200%;
+    height: 200%;
+  }
+}
 
-/* Header Section */
+/*
+------------------
+Header Section
+------------------
+*/
 header {
   box-shadow: 0 0 10px #ddd;
   position: relative;
@@ -144,7 +197,7 @@ header img {
   width: 80px;
 }
 
-/*Header -> Menu icon  */
+/* Menu icon  */
 header .menu {
   position: relative;
   width: 26px;
@@ -202,7 +255,7 @@ header .menu .inner.three {
   border-radius: 0 50% 50% 0;
 }
 
-/* Header -> main nav  */
+/* Main nav  */
 header .main-nav {
   display: flex;
   font-size: 18px;
@@ -284,7 +337,7 @@ header .main-nav > li > a:hover::before {
   }
 }
 
-/* Header -> Other nav */
+/* Other nav */
 header .other-part {
   display: flex;
   justify-content: space-between;
@@ -441,7 +494,11 @@ header .ch-lang {
   }
 }
 
-/* Landing  */
+/*
+------------------
+Landing Section
+------------------
+*/
 .landing {
   height: calc(100dvh - 72px);
   position: relative;
@@ -514,33 +571,13 @@ header .ch-lang {
   animation: up-down 1.5s infinite;
 }
 
-/* Landing Animations */
-@keyframes fly {
-  0% {
-    transform: translateY(-25px);
-  }
-  100% {
-    transform: translateY(25px);
-  }
-}
-@keyframes up-down {
-  0%,
-  10%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0);
-  }
-  40%,
-  60% {
-    transform: translateY(-15px);
-  }
-}
-
-/* Articles */
+/*
+------------------
+Articles Section
+------------------
+*/
 .articles {
-  padding-bottom: var(--bottom-padding);
+  padding: var(--sec-padding) 0;
 }
 .articles .container {
   display: grid;
@@ -593,9 +630,205 @@ header .ch-lang {
 .articles .card:hover a:after {
   animation: moving-arrow 0.6s linear infinite;
 }
-/* Articles Animcations  */
-@keyframes moving-arrow {
-  to {
-    transform: translate(calc(-50% + 6px), -50%);
-  }
+
+/*
+------------------
+Gallery
+------------------
+*/
+.gallery {
+  padding: var(--sec-padding) 0;
+  background-color: var(--sec-color);
+  position: relative;
+}
+.gallery::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 100%;
+  background-image: linear-gradient(135deg, white 25%, transparent 25%),
+    linear-gradient(225deg, white 25%, transparent 25%);
+  background-size: 30px 30px;
+}
+.gallery .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+.gallery .card {
+  background-color: white;
+  padding: 15px;
+  box-shadow: 0 12px 20px 0 rgb(0 0 0 /13%), 0 2px 4px 0 rgb(0 0 0 /12%);
+}
+.gallery .image {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+.gallery img {
+  width: 100%;
+  height: 100%;
+  transition: 0.3s;
+}
+.gallery .image:hover img {
+  transform: rotate(5deg) scale(1.1, 1.1);
+}
+.gallery .image::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+  z-index: 1;
+}
+.gallery .image:hover::before {
+  animation: flashing 0.7s;
+}
+
+/*
+------------------
+Featuers
+------------------
+*/
+.features {
+  padding: var(--sec-padding) 0;
+}
+.features .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+.features .card {
+  text-align: center;
+  border: 1px #ccc solid;
+  overflow: hidden;
+}
+.features .img-holder {
+  position: relative;
+  overflow: hidden;
+}
+.features .img-holder:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.features .card:first-child .img-holder:before {
+  background-color: rgb(244 64 54 / 60%);
+}
+.features .card:nth-child(2) .img-holder:before {
+  background-color: rgb(0 150 136 / 60%);
+}
+.features .card:last-child .img-holder:before {
+  background-color: rgb(3 169 244 / 60%);
+}
+.features .img-holder:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-style: solid;
+  border-width: 00px 0px 170px 500px;
+  border-color: transparent transparent white transparent;
+  transition: 0.5s;
+  z-index: 2;
+}
+.features .card:hover .img-holder::after {
+  border-width: 00px 500px 170px 0px;
+}
+
+.features img {
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+}
+.features .card h2 {
+  font-size: 40px;
+  width: fit-content;
+  margin: 0 auto;
+  position: relative;
+  padding-bottom: 15px;
+}
+.features .card h2:after {
+  content: "";
+  width: 70%;
+  height: 5px;
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+}
+.features .card:first-child h2:after {
+  background-color: #f44036;
+}
+.features .card:nth-child(2) h2:after {
+  background-color: #009688;
+}
+.features .card:last-child h2:after {
+  background-color: #03a9f4;
+}
+.features p {
+  padding: 25px;
+  margin: 20px auto;
+  line-height: 2;
+  font-size: 20px;
+  color: #777;
+}
+.features a {
+  font-size: 22px;
+  font-weight: bold;
+  padding: 10px 25px;
+  display: block;
+  width: fit-content;
+  margin: 0 auto 30px;
+  border-radius: 6px;
+  border: solid 3px;
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.features .card:first-of-type a {
+  color: #f44036;
+  border-color: #f44036;
+}
+.features .card:nth-of-type(2) a {
+  color: #009688;
+  border-color: #009688;
+}
+.features .card:last-of-type a {
+  color: #03a9f4;
+  border-color: #03a9f4;
+}
+.features .card:hover a {
+  color: white;
+}
+.features a::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 100%;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+  z-index: -1;
+}
+.features .card:hover a::after {
+  right: 0;
+}
+.features .card:first-of-type a::after {
+  background-color: #f44036;
+}
+.features .card:nth-of-type(2) a::after {
+  background-color: #009688;
+}
+.features .card:last-of-type a::after {
+  background-color: #03a9f4;
 }
