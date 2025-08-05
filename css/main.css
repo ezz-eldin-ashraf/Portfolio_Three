@@ -5,9 +5,11 @@ Global
 */
 :root {
   --main-color: #2196f3;
-  --sec-color: #ececec;
   --main-color-alt: #1787e0;
+  --sec-color: #777;
+  --background-color: #ececec;
   --sec-padding: 100px;
+  --norm-transition: 0.3s;
 }
 * {
   -webkit-tap-highlight-color: transparent;
@@ -68,7 +70,7 @@ Repititive
   margin: 0 auto 80px;
   position: relative;
   z-index: 1;
-  transition: 0.1s;
+  transition: 0.2s;
 }
 .main-head:hover {
   color: white;
@@ -86,7 +88,7 @@ Repititive
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  transition: 0.3s;
+  transition: var(--norm-transition);
   z-index: -1;
 }
 .main-head::before {
@@ -96,16 +98,34 @@ Repititive
   right: -20%;
 }
 .main-head:hover:before {
-  animation: to-right 0.6s linear forwards;
+  animation: to-right 0.5s linear forwards;
 }
 .main-head:hover:after {
-  animation: to-left 0.6s linear forwards;
+  animation: to-left 0.5s linear forwards;
+}
+/*
+------------------
+My Framework
+------------------
+*/
+.grid-3-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
 }
 /*
 ------------------
 Animations
 ------------------
 */
+@keyframes fly {
+  0% {
+    transform: translateY(-25px);
+  }
+  100% {
+    transform: translateY(25px);
+  }
+}
 @keyframes to-right {
   50% {
     left: 0;
@@ -130,14 +150,6 @@ Animations
     width: 60%;
     height: 100%;
     border-radius: 0;
-  }
-}
-@keyframes fly {
-  0% {
-    transform: translateY(-25px);
-  }
-  100% {
-    transform: translateY(25px);
   }
 }
 @keyframes up-down {
@@ -261,7 +273,7 @@ header .main-nav {
   font-size: 18px;
   justify-content: center;
   align-items: center;
-  transition: 0.3s;
+  transition: var(--norm-transition);
   height: 100%;
 }
 @media (max-width: 767px) {
@@ -312,12 +324,12 @@ header .main-nav > li > a {
 header .main-nav > li > a::before {
   content: "";
   height: 2px;
-  width: 100%;
+  width: 50%;
   background-color: var(--main-color);
   position: absolute;
   bottom: 0px;
   right: 100%;
-  transition: 0.5s;
+  transition: var(--norm-transition) ease-out;
 }
 header .main-nav > li > a:hover {
   color: var(--main-color);
@@ -326,7 +338,7 @@ header .main-nav > li > a:hover {
   border-radius: 3px;
 }
 header .main-nav > li > a:hover::before {
-  right: 0;
+  right: 25%;
 }
 @media (max-width: 767px) {
   header .main-nav > li > a::before {
@@ -353,7 +365,7 @@ header .other-part {
   padding-left: 30px;
   padding-right: 30px;
   transform: translateY(50px);
-  transition: 0.3s;
+  transition: var(--norm-transition);
   z-index: -1;
 }
 @media (max-width: 767px) {
@@ -407,7 +419,7 @@ header .other-nav {
   }
 }
 header .other-nav li {
-  border-bottom: #ececec 1px solid;
+  border-bottom: var(--background-color) 1px solid;
   padding: 15px 20px;
   position: relative;
   overflow: hidden;
@@ -427,8 +439,8 @@ header .other-nav li::before {
   left: -100%;
   height: 100%;
   width: 100%;
-  background-color: var(--sec-color);
-  transition: 0.3s;
+  background-color: #fafafa;
+  transition: var(--norm-transition);
 }
 @media (max-width: 767px) {
   header .other-nav li::before {
@@ -507,7 +519,7 @@ Landing Section
 }
 .landing::before {
   content: "";
-  background-color: #ececec;
+  background-color: var(--background-color);
   width: 100%;
   height: 95%;
   transform: skewY(-6deg);
@@ -546,7 +558,7 @@ Landing Section
 .landing p {
   font-size: 23px;
   line-height: 1.7;
-  color: rgb(102, 102, 102);
+  color: var(--sec-color);
 }
 @media (max-width: 767px) {
   .landing p {
@@ -588,7 +600,8 @@ Articles Section
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 2px 15px rgb(0 0 0 /0.1);
-  transition: box-shadow 0.3s, transform 0.3s;
+  transition: box-shadow var(--norm-transition),
+    transform var(--norm-transition);
 }
 .articles .card:hover {
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
@@ -606,13 +619,13 @@ Articles Section
 .articles p {
   margin: 10px 10px 0 0;
   line-height: 1.5;
-  color: #777;
+  color: var(--sec-color);
 }
 .articles a {
   color: var(--main-color);
   font-weight: bold;
   width: 100%;
-  border-top: solid #e6e6e7 1px;
+  border-top: solid var(--background-color) 1px;
   display: block;
   padding: 20px;
   position: relative;
@@ -638,7 +651,7 @@ Gallery
 */
 .gallery {
   padding: var(--sec-padding) 0;
-  background-color: var(--sec-color);
+  background-color: var(--background-color);
   position: relative;
 }
 .gallery::before {
@@ -651,11 +664,6 @@ Gallery
   background-image: linear-gradient(135deg, white 25%, transparent 25%),
     linear-gradient(225deg, white 25%, transparent 25%);
   background-size: 30px 30px;
-}
-.gallery .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
 }
 .gallery .card {
   background-color: white;
@@ -670,7 +678,7 @@ Gallery
 .gallery img {
   width: 100%;
   height: 100%;
-  transition: 0.3s;
+  transition: var(--norm-transition);
 }
 .gallery .image:hover img {
   transform: rotate(5deg) scale(1.1, 1.1);
@@ -699,11 +707,6 @@ Featuers
 .features {
   padding: var(--sec-padding) 0;
 }
-.features .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
-}
 .features .card {
   text-align: center;
   border: 1px #ccc solid;
@@ -716,7 +719,7 @@ Featuers
 .features .img-holder:before {
   content: "";
   position: absolute;
-  top: 0;
+  top: -1px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -739,17 +742,15 @@ Featuers
   border-style: solid;
   border-width: 00px 0px 170px 500px;
   border-color: transparent transparent white transparent;
-  transition: 0.5s;
+  transition: var(--norm-transition);
   z-index: 2;
 }
 .features .card:hover .img-holder::after {
   border-width: 00px 500px 170px 0px;
 }
-
 .features img {
   width: 100%;
   height: 100%;
-  transition: 0.5s;
 }
 .features .card h2 {
   font-size: 40px;
@@ -780,7 +781,7 @@ Featuers
   margin: 20px auto;
   line-height: 2;
   font-size: 20px;
-  color: #777;
+  color: var(--sec-color);
 }
 .features a {
   font-size: 22px;
@@ -791,7 +792,7 @@ Featuers
   margin: 0 auto 30px;
   border-radius: 6px;
   border: solid 3px;
-  transition: 0.3s;
+  transition: var(--norm-transition);
   position: relative;
   overflow: hidden;
 }
@@ -817,7 +818,7 @@ Featuers
   right: 100%;
   width: 100%;
   height: 100%;
-  transition: 0.5s;
+  transition: var(--norm-transition);
   z-index: -1;
 }
 .features .card:hover a::after {
@@ -831,4 +832,125 @@ Featuers
 }
 .features .card:last-of-type a::after {
   background-color: #03a9f4;
+}
+
+/*
+------------------
+Testimoials
+------------------
+*/
+.testimonials {
+  padding: var(--sec-padding) 0;
+  background-color: var(--background-color);
+}
+.testimonials .card {
+  background-color: white;
+  position: relative;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgb (0 0 0 / 7%);
+}
+.testimonials img {
+  width: 100px;
+  border-radius: 50%;
+  position: absolute;
+  top: -50px;
+  right: -10px;
+  border: var(--background-color) solid 10px;
+}
+.testimonials h3 {
+  margin: 0 0 10px;
+}
+.testimonials span {
+  color: var(--sec-color);
+  margin-bottom: 10px;
+  display: block;
+}
+.testimonials .filled {
+  color: #ffc107;
+}
+.testimonials p {
+  line-height: 1.5;
+  color: var(--sec-color);
+  margin-top: 10px;
+}
+/*
+------------------
+Testimoials
+------------------
+*/
+.team-members {
+  padding: var(--sec-padding) 0;
+}
+.team-members .container {
+  row-gap: 120px;
+}
+.team-members .card {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  top: 20%;
+}
+.team-members .card::before,
+.team-members .card::after {
+  content: "";
+  position: absolute;
+  top: -15%;
+  right: 0;
+  height: 115%;
+  border-radius: 10px;
+}
+.team-members .card::before {
+  background-color: #f3f3f3;
+  z-index: -2;
+  width: 80%;
+}
+.team-members .card::after {
+  background-color: #e4e4e4;
+  z-index: -1;
+  width: 0;
+  transition: width var(--norm-transition);
+}
+.team-members .card:hover::after {
+  width: 80%;
+}
+.team-members img {
+  width: 85%;
+  border-radius: 10px;
+  transition: var(--norm-transition);
+}
+.team-members .card:hover img {
+  filter: grayscale(100%);
+}
+.team-members .icons {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.team-members a {
+  padding: 15px;
+}
+.team-members i {
+  color: var(--sec-color);
+}
+.team-members a:hover i {
+  color: var(--main-color);
+}
+.team-members .card h3 {
+  width: 100%;
+  z-index: 1;
+  padding: 20px 20px 10px;
+  margin-left: 20%;
+  color: var(--main-color);
+  font-size: 22px;
+  transition: var(--norm-transition);
+}
+.team-members .card:hover h3 {
+  color: var(--sec-color);
+}
+.team-members p {
+  width: 100%;
+  padding: 0 20px 20px;
+  margin-left: 20%;
 }
