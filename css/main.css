@@ -92,10 +92,10 @@ Repititive
   z-index: -1;
 }
 .main-head::before {
-  left: -20%;
+  left: -25px;
 }
 .main-head::after {
-  right: -20%;
+  right: -25px;
 }
 .main-head:hover:before {
   animation: to-right 0.5s linear forwards;
@@ -329,12 +329,10 @@ header .main-nav > li > a::before {
   position: absolute;
   bottom: 0px;
   right: 100%;
-  transition: var(--norm-transition) ease-out;
+  transition: calc(var(--norm-transition) - 0.1s) linear;
 }
 header .main-nav > li > a:hover {
   color: var(--main-color);
-  font-weight: bold;
-  transform: translateX(5px);
   border-radius: 3px;
 }
 header .main-nav > li > a:hover::before {
@@ -875,11 +873,11 @@ Testimoials
 }
 /*
 ------------------
-Testimoials
+Team members
 ------------------
 */
 .team-members {
-  padding: var(--sec-padding) 0;
+  padding: var(--sec-padding) 0 calc(var(--sec-padding) * 2);
 }
 .team-members .container {
   row-gap: 120px;
@@ -953,4 +951,100 @@ Testimoials
   width: 100%;
   padding: 0 20px 20px;
   margin-left: 20%;
+}
+/*
+------------------
+Services
+------------------
+*/
+.services {
+  padding: var(--sec-padding) 0;
+  background-color: var(--background-color);
+  position: relative;
+}
+.services::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 100%;
+  background-image: linear-gradient(135deg, white 25%, transparent 25%),
+    linear-gradient(225deg, white 25%, transparent 25%);
+  background-size: 30px 30px;
+}
+.services .card {
+  position: relative;
+  background-color: white;
+  box-shadow: 0 12px 20px 0 rgb(0 0 0 / 13%), 0 2px 4px rgb(0 0 0 / 12%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: var(--norm-transition);
+  counter-increment: services;
+}
+.services .card:hover {
+  transform: translateY(-10px);
+}
+.services .card::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: var(--main-color);
+  transition: var(--norm-transition);
+}
+.services .card:hover::before {
+  width: 100%;
+  left: 0;
+}
+.services .card i {
+  color: #d5d5d5;
+  margin: 30px 0 20px;
+}
+.services .card h3 {
+  font-size: 25px;
+  color: var(--main-color);
+  margin-bottom: 40px;
+}
+.services .card .bar {
+  width: 100%;
+  text-align: right;
+  padding: 15px 20px;
+  position: relative;
+  background-color: #f9f9f9;
+}
+.services .bar::before {
+  content: "0" counter(services);
+  font-weight: bold;
+  font-size: 30px;
+  color: white;
+  padding: 0 50px 0 20px;
+  width: fit-content;
+  height: 100%;
+  background-color: var(--main-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.services .bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 80px;
+  height: calc(100% + 0.2px);
+  width: 50px;
+  transform: skewX(-30deg);
+  background-color: #d5d5d5;
+}
+.services .bar a {
+  width: fit-content;
+  color: var(--main-color);
+  font-weight: 600;
 }
